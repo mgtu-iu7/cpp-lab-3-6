@@ -10,22 +10,21 @@ int _tmain(int argc, _TCHAR* argv[])
 {
 	setlocale(LC_ALL, "Russian");
 	const int R = 10;
-	int i(0), j(0), m(0), n(0), t(0);
-	int d(0),s(0);
+	int i(0), j(0), m(0), t(0), d(0);
 	int a[R][R] = { 0 };
 	srand((unsigned)time(NULL));
-	printf("\n\t ��������� �������:");
+	printf("\n\t Массив случайных чисел:");
 	for (i = 0; i<R; i++)
 	{
 		printf("\n\t\t");
 		for (j = 0; j<R; j++)
 		{
-			a[i][j] = rand() % 10;
-			printf(" %d", a[i][j]);
+		 a[i][j] = rand() % 10;
+		 printf(" %d", a[i][j]);
 		}
 	}
         do {
-			d = 0;
+		    d = 0;
 		    for (j = 0; j < R; j++)
 		    {
 			  for (m = 0; m < R - 1; m++)
@@ -34,7 +33,7 @@ int _tmain(int argc, _TCHAR* argv[])
 				 {
 					if (a[i][j]>a[i + 1][j])
 					{
-						t = a[i][j];
+						t = a[i][j]; // Сортировка по столбцам
 						a[i][j] = a[i + 1][j];
 						a[i + 1][j] = t;
 						d = 1;
@@ -42,22 +41,19 @@ int _tmain(int argc, _TCHAR* argv[])
 				 }
 			  }
 			if ((a[R - 1][j]>a[0][j + 1]) && (j <= R - 2))
-		    {
-			 t = a[R - 1][j];
-			 a[R - 1][j] = a[0][j + 1];
-		     a[0][j + 1] = t;
-			 d = 1;
-			  }
+		        {
+			  t = a[R - 1][j]; //сортировка каждого последнего элемента столбца с первым следующего столбца
+			  a[R - 1][j] = a[0][j + 1];
+		          a[0][j + 1] = t;
+			  d = 1;
+		         }
 		   }
-		} while (d>0);
-		 printf("\n\t ������������� �������:\n\t");
-		 for (i = 0; i<R; i++)
+	    } while (d>0);//пока не перестанет сортировать
+	      printf("\n\t Упорядоченный массив:\n\t");
+	      for (i = 0; i<R; i++)
 		 {
-			printf("\n\t\t");
-			for (j = 0; j<R; j++)
-			{
-				printf(" %d", a[i][j]);
-			}
+		   printf("\n\t\t");
+		   for (j = 0; j<R; j++) {printf(" %d", a[i][j]);}
 		 }
 	_getch();
 	return 0;
